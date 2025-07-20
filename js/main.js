@@ -1,7 +1,162 @@
- AOS.init({
- 	duration: 800,
- 	easing: 'slide'
- });
+import { fetchAbout } from './api/about.js';
+import { fetchEducation } from './api/education.js';
+import { fetchSkills } from './api/skills.js';
+import { fetchExperience } from './api/experience.js';
+import { fetchProjects } from './api/projects.js';
+
+const aboutLabels = {
+  profile: "Profile",
+  domain: "Domain",
+  education: "Education",
+  language: "Language",
+  other_skills: "Other Skills",
+  certifications: "Certifications",
+  awards: "Awards",
+  interests: "Interests"
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    // About Section
+    const aboutData = await fetchAbout();
+    const aboutList = document.getElementById('about-info-list');
+    aboutList.innerHTML = '';
+    aboutData.forEach(item => {
+      const label = aboutLabels[item.key] || item.key;
+      const li = document.createElement('li');
+      li.className = 'd-flex';
+      li.innerHTML = `<span>${label}:</span> <span>${item.value}</span>`;
+      aboutList.appendChild(li);
+    });
+
+    // Education Section
+    const educationData = await fetchEducation();
+    const educationList = document.getElementById('education-list');
+    educationList.innerHTML = '';
+    educationData.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'education-card';
+      card.innerHTML = `
+        <div class="edu-title">${item.institution}</div>
+        <div class="edu-details">${item.degree ? item.degree + ',' : ''} ${item.field ? item.field + ',' : ''} ${item.percentage ? item.percentage + ',' : ''} ${item.year_of_completion ? '(' + item.year_of_completion + ')' : ''}</div>
+        ${item.description ? `<div class="edu-details">${item.description}</div>` : ''}
+      `;
+      educationList.appendChild(card);
+      // Add separator except after last card
+      if (idx < educationData.length - 1) {
+        const sep = document.createElement('div');
+        sep.className = 'education-separator';
+        educationList.appendChild(sep);
+      }
+    });
+
+    // Skills & Expertise Section
+    const skillsData = await fetchSkills();
+    const skillsList = document.getElementById('skills-list');
+    skillsList.innerHTML = '';
+    // Render skills (progress bars)
+    skillsData.filter(item => item.type === 'skill').forEach(item => {
+      const skillLabel = document.createElement('span');
+      skillLabel.textContent = `${item.name}`;
+      const skillPercent = document.createElement('span');
+      skillPercent.className = 'pull-right';
+      skillPercent.textContent = `${item.percentage}%`;
+      const progress = document.createElement('div');
+      progress.className = 'progress';
+      const progressBar = document.createElement('div');
+      progressBar.className = 'progress-bar';
+      progressBar.setAttribute('role', 'progressbar');
+      progressBar.style.width = `${item.percentage}%`;
+      progressBar.setAttribute('aria-valuenow', item.percentage);
+      progressBar.setAttribute('aria-valuemin', '0');
+      progressBar.setAttribute('aria-valuemax', '100');
+      progress.appendChild(progressBar);
+      skillsList.appendChild(skillLabel);
+      skillsList.appendChild(skillPercent);
+      skillsList.appendChild(progress);
+    });
+    // Render expertise as a bullet list in expertise-list (below Area of Expertise heading)
+    const expertiseData = skillsData.filter(item => item.type === 'expertise');
+    const expertiseList = document.getElementById('expertise-list');
+    expertiseList.innerHTML = '';
+    if (expertiseData.length > 0) {
+      const ul = document.createElement('ul');
+      expertiseData.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.name;
+        ul.appendChild(li);
+      });
+      expertiseList.appendChild(ul);
+    }
+
+    // Experience Section
+    const experienceData = await fetchExperience();
+    const experienceList = document.getElementById('experience-list');
+    experienceList.innerHTML = '';
+    experienceData.forEach((item, idx) => {
+      const card = document.createElement('div');
+      card.className = 'experience-card';
+      card.innerHTML = `
+        <div class="exp-title">${item.company} – ${item.role} <span class="text-muted">${item.start_date || ''}${item.end_date ? ' - ' + item.end_date : ''}</span></div>
+        <div class="exp-details">${item.description ? item.description : ''}</div>
+        ${item.points && item.points.length > 0 ? `<ul class='exp-details'>${item.points.map(point => `<li>${point}</li>`).join('')}</ul>` : ''}
+      `;
+      experienceList.appendChild(card);
+      // Add separator except after last card
+      if (idx < experienceData.length - 1) {
+        const sep = document.createElement('div');
+        sep.className = 'experience-separator';
+        experienceList.appendChild(sep);
+      }
+    });
+
+    // Projects Section
+    const projectsData = await fetchProjects();
+    console.log('Projects data:', projectsData);
+    const projectsList = document.getElementById('projects-list');
+    projectsList.innerHTML = '';
+    projectsData.forEach(item => {
+      const blogEntry = document.createElement('div');
+      blogEntry.className = 'blog-entry justify-content-end';
+      const a = document.createElement('a');
+      a.className = 'block-20 zoom-effect';
+      a.href = item.project_url || '#';
+      a.target = '_blank';
+      a.style.backgroundImage = `url('${item.image_url || ''}')`;
+      a.style.backgroundColor = '#222';
+      a.style.width = '350px';
+      a.style.height = '200px';
+      a.style.display = 'block';
+      a.style.backgroundSize = 'cover';
+      a.style.backgroundPosition = 'center';
+      const textDiv = document.createElement('div');
+      textDiv.className = 'text mt-3 float-right d-block';
+      const h3 = document.createElement('h3');
+      h3.className = 'heading';
+      const h3a = document.createElement('a');
+      h3a.href = item.project_url || '#';
+      h3a.target = '_blank';
+      h3a.textContent = item.title;
+      h3.appendChild(h3a);
+      const p = document.createElement('p');
+      p.textContent = item.description;
+      textDiv.appendChild(h3);
+      textDiv.appendChild(p);
+      blogEntry.appendChild(a);
+      blogEntry.appendChild(textDiv);
+      projectsList.appendChild(blogEntry);
+      // Debug log for each card
+      console.log('Rendered project card:', item.title);
+    });
+  } catch (err) {
+    console.error('Error loading data:', err);
+  }
+});
+
+AOS.init({
+	duration: 800,
+	easing: 'slide'
+});
 
 (function($) {
 
@@ -274,4 +429,26 @@
 
 
 })(jQuery);
+
+// Typing animation for hero section
+const typingAnimationElement = document.getElementById('typing-animation');
+if (typingAnimationElement) {
+  const typingTexts = [
+    'MERN Stack Developer  ',
+    'Java Developer  ',
+    'Full Stack Developer'
+  ];
+  function playTypingAnimation(text) {
+    for (let i = 0; i < text.length; i++) {
+      setTimeout(() => {
+        typingAnimationElement.textContent += text[i];
+      }, i * 200);
+    }
+    setTimeout(() => {
+      typingAnimationElement.textContent = '';
+      playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
+    }, text.length * 200);
+  }
+  playTypingAnimation(typingTexts[0]);
+}
 
