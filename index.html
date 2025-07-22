@@ -51,7 +51,7 @@
 			color: rgb(255, 255, 255);
 			overflow: hidden;
 			white-space: nowrap;
-			animation: typing 3s steps(20, end) infinite;
+			/* animation: typing 3s steps(20, end) infinite; */
 		}
 
 		#typing-animation:before {
@@ -61,17 +61,7 @@
 			width: 0;
 			height: 100%;
 			background-color: #ccc;
-			animation: typing-cursor 0.5s ease-in-out infinite;
-		}
-
-		@keyframes typing {
-			from { width: 0; }
-			to { width: 100%; }
-		}
-
-		@keyframes typing-cursor {
-			from { width: 5px; }
-			to { width: 0; }
+			/* animation: typing-cursor 0.5s ease-in-out infinite; */
 		}
 
 		.zoom-effect {
@@ -81,6 +71,483 @@
 
 		.zoom-effect:hover {
 			transform: scale(1.1);
+		}
+
+		/* Enhanced Hero Image Styling */
+		.hero-image-container {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			padding-right: 50px;
+		}
+
+		/* Abstract 3D Shapes */
+		.abstract-shape {
+			position: absolute;
+			background: linear-gradient(45deg, #ffbd39, #ff6b35);
+			border-radius: 50%;
+			animation: float 6s ease-in-out infinite;
+		}
+
+		.shape-1 {
+			width: 80px;
+			height: 80px;
+			top: 15%;
+			right: 25%;
+			animation-delay: 0s;
+			clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+		}
+
+		.shape-2 {
+			width: 60px;
+			height: 60px;
+			bottom: 20%;
+			left: 15%;
+			animation-delay: 2s;
+			clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+		}
+
+		.shape-3 {
+			width: 40px;
+			height: 40px;
+			top: 70%;
+			right: 35%;
+			animation-delay: 4s;
+			clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+		}
+
+		/* Hero Image Wrapper */
+		.hero-image-wrapper {
+			position: relative;
+			z-index: 10;
+		}
+
+		/* Glowing Effect - Hexagonal */
+		.hero-image-glow {
+			position: absolute;
+			top: -25px;
+			left: -25px;
+			right: -25px;
+			bottom: -25px;
+			background: radial-gradient(ellipse, rgba(255, 189, 57, 0.3) 0%, rgba(255, 189, 57, 0.1) 50%, transparent 70%);
+			clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+			animation: glow 3s ease-in-out infinite alternate;
+		}
+
+		/* Image Frame - Hexagonal Design */
+		.hero-image-frame {
+			position: relative;
+			width: 320px;
+			height: 360px;
+			overflow: hidden;
+			clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+			border: 4px solid rgba(255, 189, 57, 0.8);
+			box-shadow: 
+				0 0 30px rgba(255, 189, 57, 0.5),
+				0 0 60px rgba(255, 189, 57, 0.3),
+				0 0 90px rgba(255, 189, 57, 0.1);
+			transition: all 0.3s ease;
+			background: linear-gradient(45deg, rgba(255, 189, 57, 0.1), rgba(255, 189, 57, 0.05));
+		}
+
+		.hero-image-frame:hover {
+			transform: scale(1.05) rotate(5deg);
+			box-shadow: 
+				0 0 40px rgba(255, 189, 57, 0.7),
+				0 0 80px rgba(255, 189, 57, 0.4),
+				0 0 120px rgba(255, 189, 57, 0.2);
+		}
+
+		/* Profile Image */
+		.hero-profile-image {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.3s ease;
+			filter: brightness(1.1) contrast(1.1);
+		}
+
+		.hero-image-frame:hover .hero-profile-image {
+			transform: scale(1.1);
+			filter: brightness(1.2) contrast(1.2);
+		}
+
+		/* Floating Elements */
+		.floating-element {
+			position: absolute;
+			color: #ffbd39;
+			font-size: 24px;
+			animation: float 4s ease-in-out infinite;
+			opacity: 0.8;
+		}
+
+		.element-1 {
+			top: 10%;
+			right: 30%;
+			animation-delay: 1s;
+		}
+
+		.element-2 {
+			bottom: 15%;
+			left: 20%;
+			animation-delay: 3s;
+		}
+
+		.element-3 {
+			top: 80%;
+			right: 20%;
+			animation-delay: 5s;
+		}
+
+		/* Animations */
+		@keyframes float {
+			0%, 100% {
+				transform: translateY(0px) rotate(0deg);
+			}
+			50% {
+				transform: translateY(-20px) rotate(180deg);
+			}
+		}
+
+		@keyframes glow {
+			0% {
+				opacity: 0.5;
+				transform: scale(1);
+			}
+			100% {
+				opacity: 0.8;
+				transform: scale(1.1);
+			}
+		}
+
+		/* Responsive Design */
+		@media (max-width: 768px) {
+			.hero-image-frame {
+				width: 280px;
+				height: 315px;
+			}
+
+			.abstract-shape {
+				display: none;
+			}
+
+			.floating-element {
+				font-size: 18px;
+			}
+		}
+
+		@media (max-width: 480px) {
+			.hero-image-frame {
+				width: 240px;
+				height: 270px;
+			}
+		}
+
+		/* Grid Pattern with Fade Effect */
+		.hero::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-image: 
+				linear-gradient(rgba(255, 189, 57, 0.08) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(255, 189, 57, 0.08) 1px, transparent 1px);
+			background-size: 50px 50px;
+			mask-image: radial-gradient(ellipse 800px 400px at center, black 0%, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 70%, transparent 100%);
+			-webkit-mask-image: radial-gradient(ellipse 800px 400px at center, black 0%, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 70%, transparent 100%);
+			pointer-events: none;
+			z-index: 1;
+		}
+
+		/* Ensure content stays above the grid */
+		.hero .home-slider {
+			position: relative;
+			z-index: 2;
+		}
+
+		/* Modern About Section Styling */
+		.about-section-container {
+			position: relative;
+			overflow: hidden;
+			width: 100%;
+			height: 500px;
+		}
+
+		/* Large Background Elements */
+		.about-bg-element {
+			position: absolute;
+			border-radius: 50%;
+			opacity: 0.08;
+			background: #ffbd39;
+			animation: slowFloat 15s ease-in-out infinite;
+		}
+
+		.about-bg-1 {
+			width: 250px;
+			height: 250px;
+			top: -80px;
+			right: -50px;
+			animation-delay: 0s;
+		}
+
+		.about-bg-2 {
+			width: 180px;
+			height: 180px;
+			bottom: -60px;
+			left: -40px;
+			animation-delay: 5s;
+		}
+
+		.about-bg-3 {
+			width: 120px;
+			height: 120px;
+			top: 20%;
+			right: 15%;
+			animation-delay: 10s;
+		}
+
+		.about-bg-4 {
+			width: 90px;
+			height: 90px;
+			top: 60%;
+			left: 10%;
+			animation-delay: 7s;
+		}
+
+		.about-bg-5 {
+			width: 70px;
+			height: 70px;
+			bottom: 30%;
+			right: 5%;
+			animation-delay: 12s;
+		}
+
+		/* Modern Image Container */
+		.modern-about-image {
+			position: relative;
+			z-index: 10;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+		}
+
+		/* Large Circle Frame */
+		.about-image-frame {
+			position: relative;
+			width: 380px;
+			height: 380px;
+			border-radius: 50%;
+			background: linear-gradient(135deg, #ffbd39 0%, #ffa726 50%, #ffbd39 100%);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			box-shadow: 
+				0 0 0 6px rgba(255, 189, 57, 0.3),
+				0 0 0 12px rgba(255, 189, 57, 0.15),
+				0 0 0 20px rgba(255, 189, 57, 0.08),
+				0 30px 60px rgba(255, 189, 57, 0.25);
+			transition: all 0.3s ease;
+		}
+
+		.about-image-frame:hover {
+			transform: scale(1.02);
+			box-shadow: 
+				0 0 0 6px rgba(255, 189, 57, 0.4),
+				0 0 0 12px rgba(255, 189, 57, 0.2),
+				0 0 0 20px rgba(255, 189, 57, 0.1),
+				0 35px 70px rgba(255, 189, 57, 0.35);
+		}
+
+		.about-image-frame::before {
+			content: '';
+			position: absolute;
+			top: 8px;
+			left: 8px;
+			right: 8px;
+			bottom: 8px;
+			background: #0a0a0a;
+			border-radius: 50%;
+			z-index: 1;
+		}
+
+		/* Profile Image */
+		.about-profile-image {
+			position: relative;
+			z-index: 2;
+			width: 340px;
+			height: 340px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 5px solid #ffbd39;
+			box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+			transition: transform 0.3s ease;
+		}
+
+		.about-profile-image:hover {
+			transform: scale(1.03);
+		}
+
+		/* Multiple Decorative Elements */
+		.about-decoration {
+			position: absolute;
+			border: 2px solid rgba(255, 189, 57, 0.4);
+			border-radius: 50%;
+			animation: rotate 25s linear infinite;
+		}
+
+		.about-dec-1 {
+			width: 60px;
+			height: 60px;
+			top: 10%;
+			right: 25%;
+			animation-delay: 0s;
+		}
+
+		.about-dec-2 {
+			width: 45px;
+			height: 45px;
+			bottom: 20%;
+			left: 20%;
+			animation-delay: 8s;
+		}
+
+		.about-dec-3 {
+			width: 35px;
+			height: 35px;
+			top: 75%;
+			right: 10%;
+			animation-delay: 4s;
+		}
+
+		.about-dec-4 {
+			width: 50px;
+			height: 50px;
+			top: 30%;
+			left: 5%;
+			animation-delay: 12s;
+		}
+
+		.about-dec-5 {
+			width: 40px;
+			height: 40px;
+			bottom: 40%;
+			right: 35%;
+			animation-delay: 6s;
+		}
+
+		/* Floating Lines */
+		.about-line {
+			position: absolute;
+			background: linear-gradient(90deg, transparent, rgba(255, 189, 57, 0.3), transparent);
+			animation: floatLine 8s ease-in-out infinite;
+		}
+
+		.about-line-1 {
+			width: 120px;
+			height: 2px;
+			top: 15%;
+			left: 15%;
+			animation-delay: 0s;
+		}
+
+		.about-line-2 {
+			width: 80px;
+			height: 2px;
+			bottom: 25%;
+			right: 20%;
+			animation-delay: 4s;
+		}
+
+		.about-line-3 {
+			width: 100px;
+			height: 2px;
+			top: 60%;
+			left: 25%;
+			animation-delay: 2s;
+		}
+
+		/* Animations */
+		@keyframes slowFloat {
+			0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+			50% { transform: translateY(-25px) rotate(180deg) scale(1.1); }
+		}
+
+		@keyframes rotate {
+			from { transform: rotate(0deg); }
+			to { transform: rotate(360deg); }
+		}
+
+		@keyframes floatLine {
+			0%, 100% { transform: translateX(0px) scaleX(1); opacity: 0.3; }
+			50% { transform: translateX(20px) scaleX(1.2); opacity: 0.6; }
+		}
+
+		/* Responsive Design */
+		@media (max-width: 768px) {
+			.about-section-container {
+				height: 400px;
+			}
+
+			.about-image-frame {
+				width: 300px;
+				height: 300px;
+			}
+			
+			.about-profile-image {
+				width: 260px;
+				height: 260px;
+			}
+
+			.about-bg-element {
+				display: none;
+			}
+
+			.about-decoration {
+				width: 30px;
+				height: 30px;
+			}
+
+			.about-line {
+				display: none;
+			}
+		}
+
+		/* Education & Experience Card Styling */
+		#education-list .education-card, #experience-list .experience-card {
+			background: rgba(255,255,255,0.01);
+			margin: 32px auto 0 auto;
+			padding: 22px 36px;
+			border-radius: 12px;
+			box-shadow: 0 2px 16px 0 rgba(255,189,57,0.04);
+			position: relative;
+			max-width: 800px;
+			transition: box-shadow 0.2s;
+		}
+		#education-list .edu-title, #experience-list .exp-title {
+			font-weight: 700;
+			color: #ffbd39;
+			font-size: 1.1rem;
+			margin-bottom: 6px;
+		}
+		#education-list .edu-details, #experience-list .exp-details {
+			color: #fff;
+			font-size: 1rem;
+			opacity: 0.85;
+		}
+		#education-list .education-separator, #experience-list .experience-separator {
+			height: 2px;
+			background: linear-gradient(90deg, transparent 0%, #ffbd39 50%, transparent 100%);
+			margin: 24px auto 0 auto;
+			width: 60%;
+			border-radius: 1px;
+			opacity: 0.7;
 		}
 	</style>
 </head>
@@ -110,41 +577,40 @@
 		</div>
 	</nav>
 
-	<section id="home-section" class="hero">
+	<section id="home-section" class="hero" style="background: radial-gradient(ellipse 600px 300px at center, rgba(255, 189, 57, 0.25) 0%, rgba(255, 189, 57, 0.15) 25%, rgba(255, 189, 57, 0.08) 45%, rgba(255, 189, 57, 0.03) 60%, transparent 75%); background-color: #0a0a0a; position: relative;">
 		<div class="home-slider owl-carousel">
 			<div class="slider-item">
 				<div class="overlay"></div>
 				<div class="container">
 					<div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
-						<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/bg_1.png);">
+						<div class="one-third js-fullheight order-md-last img">
 							<div class="overlay"></div>
+							<!-- Enhanced Image Container with Modern Styling -->
+							<div class="hero-image-container">
+								<!-- Abstract 3D Shapes -->
+								<div class="abstract-shape shape-1"></div>
+								<div class="abstract-shape shape-2"></div>
+								<div class="abstract-shape shape-3"></div>
+								
+								<!-- Main Image with Glowing Effect -->
+								<div class="hero-image-wrapper">
+									<div class="hero-image-glow"></div>
+									<div class="hero-image-frame">
+										<img src="images/bg_1.png" alt="Shivang Chauhan" class="hero-profile-image">
+									</div>
+								</div>
+								
+								<!-- Floating Elements -->
+								<div class="floating-element element-1">✦</div>
+								<div class="floating-element element-2">✦</div>
+								<div class="floating-element element-3">✦</div>
+							</div>
 						</div>
 						<div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
 							<div class="text">
 								<span class="subheading">Hello!</span>
 								<h1 class="mb-4 mt-3">I'm <span>Shivang Chauhan</span></h1>
 								<span id="typing-animation"></span>
-								<script>
-									const typingAnimationElement = document.getElementById('typing-animation');
-									const typingTexts = [
-										'MERN Stack Developer  ',
-										'Java Developer  ',
-										'Full Stack Developer'
-									];
-									function playTypingAnimation(text) {
-										for (let i = 0; i < text.length; i++) {
-											setTimeout(() => {
-												typingAnimationElement.textContent += text[i];
-											}, i * 200);
-										}
-										setTimeout(() => {
-											typingAnimationElement.textContent = '';
-											playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
-										}, text.length * 200);
-									}
-									playTypingAnimation(typingTexts[0]);
-								</script>
-								<br><br>
 								<h2>Computer Science Enthusiast & Full-Stack Developer</h2>
 							</div>
 						</div>
@@ -158,11 +624,31 @@
 		<div class="container">
 			<div class="row d-flex align-items-center">
 				<div class="col-md-6 col-lg-5 d-flex align-items-center">
-					<div class="img-about img d-flex align-items-center justify-content-center" style="position: relative;">
-						<div class="overlay p-0" style="background: none; box-shadow: 0 8px 32px 0 rgba(255,189,57,0.37); border-radius: 50%; border: 4px solid #ffbd39; width: 260px; height: 260px; display: flex; align-items: center; justify-content: center;">
-							<div class="about-img" style="margin: 0;">
-								<img src="images/about-me.jpg" class="img-fluid rounded-circle shadow-lg" alt="" style="width: 220px; height: 220px; object-fit: cover; border: 4px solid #fff;">
+					<div class="about-section-container">
+						<!-- Large Background Elements -->
+						<div class="about-bg-element about-bg-1"></div>
+						<div class="about-bg-element about-bg-2"></div>
+						<div class="about-bg-element about-bg-3"></div>
+						<div class="about-bg-element about-bg-4"></div>
+						<div class="about-bg-element about-bg-5"></div>
+						
+						<!-- Modern Image Container -->
+						<div class="modern-about-image">
+							<div class="about-image-frame">
+								<img src="images/about-me.jpg" class="about-profile-image" alt="Shivang Chauhan">
 							</div>
+							
+							<!-- Multiple Decorative Elements -->
+							<div class="about-decoration about-dec-1"></div>
+							<div class="about-decoration about-dec-2"></div>
+							<div class="about-decoration about-dec-3"></div>
+							<div class="about-decoration about-dec-4"></div>
+							<div class="about-decoration about-dec-5"></div>
+							
+							<!-- Floating Lines -->
+							<div class="about-line about-line-1"></div>
+							<div class="about-line about-line-2"></div>
+							<div class="about-line about-line-3"></div>
 						</div>
 					</div>
 				</div>
@@ -172,16 +658,7 @@
 							<h1 class="big">About</h1>
 							<h2 class="mb-4">About Me</h2>
 							<p>A dedicated Computer Science graduate with expertise in full-stack development, specializing in Java, Spring Boot, React, Node.js, and MySQL. I have built efficient, user-friendly applications through projects like e-commerce platforms and management systems. As President of the Technical Club at RBCET and a member of the Software Development Cell, I have honed leadership and technical skills. I am committed to leveraging modern technologies to create impactful solutions.</p>
-							<ul class="about-info mt-4 px-md-0 px-2">
-								<li class="d-flex"><span>Profile:</span> <span>Tech enthusiast, skilled developer, and leader</span></li>
-								<li class="d-flex"><span>Domain:</span> <span>Full-Stack Web Development, Software Development</span></li>
-								<li class="d-flex"><span>Education:</span> <span>Bachelor of Engineering</span></li>
-								<li class="d-flex"><span>Language:</span> <span>English, Hindi</span></li>
-								<li class="d-flex"><span>Other Skills:</span> <span>Git, Hibernate, Bootstrap, AWS, API Development</span></li>
-								<li class="d-flex"><span>Certifications:</span> <span>Full Stack Development, Java with Spring Boot Framework, AWS and React (Full Stack Apps)</span></li>
-								<li class="d-flex"><span>Awards:</span> <span>President of Technical Club at RBCET, Appreciation Letter for Academic and Extracurricular Contributions</span></li>
-								<li class="d-flex"><span>Interests:</span> <span>Singing, Drawing</span></li>
-							</ul>
+							<ul class="about-info mt-4 px-md-0 px-2" id="about-info-list"></ul>
 						</div>
 					</div>
 				</div>
@@ -200,16 +677,7 @@
 			</div>
 			<div class="row justify-content-center mt-4">
 				<div class="col-md-10 ftco-animate">
-					<ul class="list-unstyled">
-						<li class="mb-2">
-							<strong class="text-primary">Rakshpal Bahadur College Of Engineering & Technology - Bareilly</strong><br>
-							Bachelor of Technology, Computer Science & Engineering (2021-2025)
-						</li>
-						<li>
-							<strong class="text-primary">Bal Vidyapeeth Public School - Aonla, Bareilly</strong><br>
-							XII-CBSE (PCM) (2021)
-						</li>
-					</ul>
+					<ul class="list-unstyled" id="education-list"></ul>
 				</div>
 			</div>
 		</div>
@@ -222,30 +690,7 @@
 					<h1 class="big">Skills</h1>
 					<h2 class="mb-4">My Skills</h2>
 					<p>Proficient in a wide range of technologies, I excel in building robust and scalable web applications using modern frameworks and tools.</p>
-					<div class="skill-mf">
-						<p class="title-s">Technical Skills</p>
-						
-						<span>React & Node.js</span> <span class="pull-right">85%</span>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-						<span>Java & Spring Boot</span> <span class="pull-right">80%</span>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-						<span>MySQL & Hibernate</span> <span class="pull-right">75%</span>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-						<span>HTML, CSS & JavaScript</span> <span class="pull-right">80%</span>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-						<span>AWS</span> <span class="pull-right">65%</span>
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-						</div>
-					</div>
+					<div class="skill-mf" id="skills-list"></div>
 				</div>
 			</div>
 			<div class="row">
@@ -253,14 +698,7 @@
 					<h1 class="big">Area of Expertise</h1>
 					<h2 class="mb-4">My Expertise</h2>
 					<p>Specializing in full-stack development, I focus on creating efficient, secure, and user-centric applications using modern technologies and frameworks.</p>
-					<ul>
-						<li>Full-Stack Web Development (MERN Stack)</li>
-						<li>Java Development with Spring Boot and Hibernate</li>
-						<li>Database Management (MySQL)</li>
-						<li>API Development and Integration (Node.js, Express.js)</li>
-						<li>Frontend Development (React, Bootstrap)</li>
-						<li>Cloud Technologies (AWS)</li>
-					</ul>
+					<div id="expertise-list"></div>
 				</div>
 			</div>
 		</div>
@@ -277,36 +715,7 @@
 			</div>
 			<div class="row justify-content-center mt-4">
 				<div class="col-md-10 ftco-animate">
-					<ul class="list-unstyled">
-						<li class="mb-3">
-							<strong class="text-primary">Extreme Appcoders</strong> – Full Stack Software Developer <span class="text-muted">(March 2025 - Present)</span><br>
-							<ul>
-								<li>Structured React-based UI libraries used in 15+ applications, accelerating feature delivery and maintaining uniformity across platforms.</li>
-								<li>Configured and integrated RESTful APIs with robust state handling, resulting in a 25% improvement in response time for high-traffic services.</li>
-							</ul>
-						</li>
-						<li class="mb-3">
-							<strong class="text-primary">RBMI Group of Institutions</strong> – Java Full Stack Software Developer <span class="text-muted">(Nov 2024 - Mar 2025)</span><br>
-							<ul>
-								<li>Delivered backend systems for student administration using Spring Boot and Hibernate, supporting 200+ users seamlessly.</li>
-								<li>Deployed over 10 microservices and API endpoints that optimized information flow between departments and reduced manual processing delays.</li>
-							</ul>
-						</li>
-						<li class="mb-3">
-							<strong class="text-primary">Softpro India Private Limited</strong> – Java Developer <span class="text-muted">(Oct 2024 - Nov 2024)</span><br>
-							<ul>
-								<li>Revamped existing academic tools by implementing new UI logic with Spring MVC, increasing user satisfaction scores by 18%.</li>
-								<li>Designed scalable RESTful services supporting multi-user environments, reducing downtime during peak usage hours.</li>
-							</ul>
-						</li>
-						<li>
-							<strong class="text-primary">Rasheed Foundation</strong> – Wordpress Developer and Quality Assurance <span class="text-muted">(Apr 2024 - Aug 2024)</span><br>
-							<ul>
-								<li>Built and customized two client websites using WordPress with plugin-based functionality tailored to business needs.</li>
-								<li>Conducted functional and UI testing for 3+ deployed platforms, reporting 30+ bugs and streamlining release cycles.</li>
-							</ul>
-						</li>
-					</ul>
+					<ul class="list-unstyled" id="experience-list"></ul>
 				</div>
 			</div>
 		</div>
@@ -321,44 +730,7 @@
 					<p>Explore my portfolio of projects demonstrating expertise in full-stack development, delivering efficient and scalable solutions for real-world problems.</p>
 				</div>
 			</div>
-			<div class="row d-flex">
-				<div class="col-md-4 d-flex ftco-animate">
-					<div class="blog-entry justify-content-end">
-						<a href="#" class="block-20 zoom-effect" style="background-image: url('images/proj_1.png'); width: 350px; height: 200px;"></a>
-						<div class="text mt-3 float-right d-block">
-							<h3 class="heading"><a href="#">Student-Counselor Management System</a></h3>
-							<p>Developed using Java, Spring Boot, MySQL, Hibernate, and Bootstrap. Automated counselor assignments, reducing administrative processing time for 100+ students per semester.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 d-flex ftco-animate">
-					<div class="blog-entry justify-content-end">
-						<a href="#" class="block-20 zoom-effect" style="background-image: url('images/proj_2.png'); width: 350px; height: 200px;"></a>
-						<div class="text mt-3 float-right d-block">
-							<h3 class="heading"><a href="#">E-Commerce Gift Website</a></h3>
-							<p>Built with React, Node.js, Express.js, and MySQL. Features full authentication, live cart, and secure checkout, processing over 100 user transactions.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 d-flex ftco-animate">
-					<div class="blog-entry">
-						<a href="#" class="block-20 zoom-effect" style="background-image: url('images/proj_3.png'); width: 350px; height: 200px;"></a>
-						<div class="text mt-3 float-right d-block">
-							<h3 class="heading"><a href="#">Digital Visitor Management System</a></h3>
-							<p>Created using Spring Boot, MySQL, JavaScript, and Bootstrap. Replaced manual logbooks, cutting approval and entry time by over 60%.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 d-flex ftco-animate">
-					<div class="blog-entry">
-						<a href="#" class="block-20 zoom-effect" style="background-image: url('images/proj_4.png'); width: 350px; height: 200px;"></a>
-						<div class="text mt-3 float-right d-block">
-							<h3 class="heading"><a href="#">E-Commerce Medicine Store Website</a></h3>
-							<p>Developed with React, Node.js, Express.js, and MySQL. Includes product filtering, secure checkout, and admin panel, managing 100+ orders securely.</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div id="projects-list" class="projects-list"></div>
 		</div>
 	</section>
 
@@ -456,7 +828,7 @@
 	<script src="js/aos.js"></script>
 	<script src="js/jquery.animateNumber.min.js"></script>
 	<script src="js/scrollax.min.js"></script>
-	<script src="js/main.js"></script>
+	<script type="module" src="js/main.js"></script>
 
 </body>
 </html>
